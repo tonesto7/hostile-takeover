@@ -2,6 +2,8 @@
 #include "game/gameform.h"
 #include "game/creategameform.h"
 #include "mpshared/messages.h"
+#include <algorithm>
+#include <string>
 
 namespace wi {
     

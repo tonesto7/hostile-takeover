@@ -5,6 +5,7 @@
 #include <limits.h>
 #include <errno.h>
 #include <string>
+#include <stdio.h>
 
 namespace base {
 

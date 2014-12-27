@@ -64,6 +64,10 @@ bool Display::Init()
 #ifdef __IPHONEOS__
     cxScreen = 320;
     cyScreen = 480;
+#elif defined(PANDORA)
+	cxScreen = 800;
+	cyScreen = 480;
+	videoflags |= SDL_FULLSCREEN;
 #else
     cxScreen = 800;
     cyScreen = 600;

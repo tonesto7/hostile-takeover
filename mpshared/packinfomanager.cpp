@@ -2,6 +2,8 @@
 #include "mpshared/misc.h"
 #include "base/format.h"
 #include "yajl/wrapper/jsonbuilder.h"
+#include <stdio.h>
+
 
 namespace wi {
 

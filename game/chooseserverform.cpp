@@ -9,6 +9,7 @@
 #include "yajl/wrapper/jsonbuilder.h"
 #include "game/xtransport.h"
 #include <map>
+#include <algorithm>
 
 namespace wi {
 
@@ -167,7 +168,6 @@ dword ChooseServerForm::Connect(const ServerInfo& info) {
     // attempted while this form is up, and if it fails the form stays up
     // so the list can be refreshed, or another server tried. Bringing up
     // this form is expensive because of the ServerInfo query.
-
     TransportWaitingUI twui("Contacting Service");
     Transport *ptra = (Transport *)new XTransport(info.address);
     dword result = ptra->Open();

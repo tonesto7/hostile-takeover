@@ -2,6 +2,9 @@
 #include "mpshared/mpht.h"
 #include "base/format.h"
 #include "yajl/wrapper/jsonbuilder.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 namespace wi {
 

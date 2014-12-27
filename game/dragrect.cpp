@@ -1,5 +1,6 @@
 #include "game/dragrect.h"
 #include "game/ht.h"
+#define MAXFLOAT      3.40282347e+38F
 
 namespace wi {
 

@@ -39,6 +39,8 @@ bool PackManager::EnumPacks(Enum *penm, PackId *ppackid) {
 int PackManager::IsInstalled(const PackId *ppackid, PackId *ppackidUpgrade) {
     // This is temporary. Ideally, the "main" packs use the same
     // versioning system.
+	if (!ppackid)
+		return 0;
 
     if (ppackid->id == PACKID_MAIN) {
         // Exact pack found

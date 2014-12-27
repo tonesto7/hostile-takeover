@@ -7,23 +7,17 @@
 
 ## Building
 
-### Prerequisites
-- Mac OS X
-- Xcode 5 (or later) with *Command Line Tools* installed
-	- Install *Command Line Tools* from Xcode *Preferences... Downloads*.
+### Prerequisites for OpenPandora
+- OpenPandora
+- latest Codeblocks (but other dev. tools should work)
 
-### Building the Hostile Takeover Executable
-1. Within Xcode, open `game/wi.xcodeproj`.
-- Select a Build Configuration via *Edit Scheme...Info*
-	- **Debug (default)**. Has extra runtime checks and is typically used during development. Displays "DEV BUILD" and date on Hostile Takeover startup screen. The Debug version requires a local server to be running for multiplayer testing.
-	- **Release**. W/o extra runtime checks. Displays date on Hostile Takeover startup screen.
-	- **Distribution**. Same as Release but displays game database version number on Hostile Takeover startup screen.
-	- **Distribution-Store**. Same as Distribution but is signed with a necessary key for redistribution in the iTunes App Store. NOTE: You'll have to get your own key if you want to distribute through the App Store.
-	- **Adhoc**. ???
-- Build and run!
-	- On your device or in the iOS Simulator.
+### Building the Hostile Takeover Executable for OpenPandora
+- from codeblocks command line, go to your hostile-takeover folder
+- cd game
+- make -f makefile.pandora
+- run it with linux_rel/WarfareIncorporated on your device
 
-### Building the Hostile Takeover Data File
+### Building the Hostile Takeover Data File (not updated/checked on Pandora)
 The Hostile Takeover iOS executable incorporates a data file, **htdata832.pdb**, which includes all the art, audio, and levels for the game. A prebuilt version of this data file is already in the source tree so you don't need to build it unless you are modifying assets it contains.
 
 Originally all of Hostile Takeover was developed on Windows using Windows tools like Visual Studio and C#. To build the data file on the Mac, the cross platform Mono framework is used.
@@ -37,7 +31,7 @@ Originally all of Hostile Takeover was developed on Windows using Windows tools 
 	- `cd ..`
 	- `bin/markversion 1.6`
 
-### Building and running the Hostile Takeover Multiplayer Server
+### Building and running the Hostile Takeover Multiplayer Server (not updated/checked on Pandora)
 Hostile Takeover supports single player and multiplayer play. Multiplayer is supported by two server components: a TCP based game server located in the **server** directory, and an HTTP based server located in the **stats** directory used for accounts, leaderboard, game history and game stats.
 
 1. The game server is a command line server which builds can be built and run on OSX or Linux. The game server is does not (currently) build and run on Windows. The production server environment is expected to be Linux based.

@@ -67,6 +67,7 @@
 #if defined(CONSOLE_LOGGING)
 
 #include <string>
+#include <stdio.h>
 #include <stdarg.h>
 #include <stdio.h>
 

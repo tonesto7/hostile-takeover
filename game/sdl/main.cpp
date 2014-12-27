@@ -22,6 +22,7 @@ static void quit(int rc)
 #ifdef __cplusplus
 extern "C"
 #endif
+
 int SDL_main(int argc, char *argv[])
 {
     // Set up the main thread as the SDL event thread.
@@ -31,3 +32,10 @@ int SDL_main(int argc, char *argv[])
     wi::GameMain((char *)"");
     return 0;
 }
+#ifdef PANDORA
+int main(int argc, char *argv[])
+{
+  SDL_main(argc, argv);
+}
+#endif
+

@@ -2,6 +2,7 @@
 #include "game/httpindexloader.h"
 #include "game/serviceurls.h"
 #include <map>
+#include <algorithm>
 
 namespace wi {
 

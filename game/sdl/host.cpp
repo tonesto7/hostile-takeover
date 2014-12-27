@@ -45,7 +45,7 @@ void HostExit()
     HostHelpers::Cleanup();
 }
 
-const char *HostGetDeviceId() {
+const char *HostGenerateDeviceId() {
     // Hash it so query params aren't obnoxious                                 
     MD5_CTX md5;
     MD5Init(&md5);
@@ -104,8 +104,7 @@ bool ProcessSdlEvent(Event *pevt)
 {
     memset(pevt, 0, sizeof(*pevt));
     SDL_Event event;
-    switch (SDL_PeepEvents(&event, 1, SDL_GETEVENT, SDL_FIRSTEVENT,
-            SDL_LASTEVENT)) {
+    switch (SDL_PeepEvents(&event, 1, SDL_GETEVENT, SDL_ALLEVENTS)) {
     case -1:
         // App is exiting, or there is an error
         pevt->eType = appStopEvent;

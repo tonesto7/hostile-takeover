@@ -31,8 +31,7 @@ public:
 
             // Check for a single event. Peek here, let the caller Get.
             SDL_Event event;
-            switch (SDL_PeepEvents(&event, 1, SDL_PEEKEVENT, SDL_FIRSTEVENT,
-                    SDL_LASTEVENT)) {
+            switch (SDL_PeepEvents(&event, 1, SDL_PEEKEVENT, SDL_ALLEVENTS)) {
             case -1:
                 // App is exiting, or there is an error
                 return false;

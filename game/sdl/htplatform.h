@@ -4,7 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#ifdef PANDORA
+#include <limits.h>
+#else
 #include <sys/syslimits.h>
+#endif
 #include <sys/time.h>
 #include <stdio.h>
 #include <SDL.h>
@@ -13,10 +17,11 @@
 
 // To determine if running on simulator, the sdk sets TARGET_IPHONE_SIMULATOR
 // to 0 or 1.
-
+#ifndef PANDORA
 #include <TargetConditionals.h>
 #if TARGET_IPHONE_SIMULATOR == 1
 #define SIMULATOR
+#endif
 #endif
 
 namespace wi {
