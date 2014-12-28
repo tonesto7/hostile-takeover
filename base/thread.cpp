@@ -6,7 +6,7 @@ namespace base {
 Thread g_main_thread;
 pthread_key_t Thread::s_key_;
 
-Thread::Thread(SocketServer *ss) : start_routine_(NULL), start_pv_(NULL),
+Thread::Thread(SocketServer *ss) : start_routine_(NULL), start_pv_(NULL), started(false),
         MessageQueue(ss) {
     if (&g_main_thread == this) {
         pthread_key_create(&s_key_, NULL);
@@ -21,6 +21,7 @@ Thread::~Thread() {
 void Thread::Start(void (start_routine)(void *), void *start_pv) {
     start_routine_ = start_routine;
     start_pv_ = start_pv;
+    started = true;
     pthread_create(&thread_, NULL, PreRun, this);
 }
 
@@ -43,9 +44,12 @@ void Thread::CallerStart(void *pv) {
 
 void Thread::Stop(bool wait) {
     MessageQueue::Stop();
-    if (wait && &current() != this) {
-        void *pv;
-        pthread_join(thread_, &pv);
+    if (started) {
+        if (wait && &current() != this) {
+            void *pv;
+            pthread_join(thread_, &pv);
+        }
+        started = false;
     }
 }
 

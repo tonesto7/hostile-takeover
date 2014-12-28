@@ -183,6 +183,7 @@ bool ProcessSdlEvent(Event *pevt)
 #endif
 
 		case SDLK_KP_MINUS:	// numpad
+        case SDLK_F7:
 			{
 				int i = 0;
 				for (; i < ARRAYSIZE(gatGameSpeeds); i++)
@@ -196,6 +197,7 @@ bool ProcessSdlEvent(Event *pevt)
 			break;
 
 		case SDLK_KP_PLUS:	// numpad
+        case SDLK_F8:
 			{
 				int i = 0;
 				for (; i < ARRAYSIZE(gatGameSpeeds); i++)
@@ -207,6 +209,9 @@ bool ProcessSdlEvent(Event *pevt)
 				ggame.SetGameSpeed(gatGameSpeeds[i]);
 			}
 			break;
+        case SDLK_ESCAPE:  // Let's Quit with Escape
+            pevt->eType = appStopEvent;
+            break;
 
         default:
 #ifdef DEBUG_HELPERS
