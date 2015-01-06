@@ -2,6 +2,10 @@
 #include "game/sdl/sdlspritemgr.h"
 #include "hosthelpers.h"
 
+#ifndef PANDORA
+extern int fullscreen_flag;
+#endif
+
 namespace wi {
 
 Display *HostCreateDisplay() {
@@ -71,6 +75,8 @@ bool Display::Init()
 #else
     cxScreen = 800;
     cyScreen = 600;
+    if (fullscreen_flag)
+	videoflags |= SDL_FULLSCREEN;
 #endif
 
     /* Set 640x480 video mode */
