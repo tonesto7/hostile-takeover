@@ -32,7 +32,7 @@ int SDL_main(int argc, char *argv[])
     wi::GameMain((char *)"");
     return 0;
 }
-#ifdef PANDORA
+#if defined(PANDORA) || defined(__linux__)
 int main(int argc, char *argv[])
 {
   SDL_main(argc, argv);

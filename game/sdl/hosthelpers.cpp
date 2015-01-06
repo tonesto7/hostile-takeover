@@ -17,7 +17,7 @@ HttpService *gphttp;
 bool HostHelpers::Init() {
 	char pszHomeDir[PATH_MAX];
     //sprintf(gszMainDataDir, "%s/..", pszAppDir);	//should use readlink("/proc/self/exe", buf, bufsize);
-	#ifdef PANDORA
+	#if defined(PANDORA) || defined(__linux__)
     sprintf(gszMainDataDir, ".");
 	#else
     sprintf(gszMainDataDir, "..");
