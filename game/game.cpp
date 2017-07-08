@@ -981,7 +981,6 @@ bool Game::InitDisplay(int immRequested)
     gpsprm = gpdisp->GetSpriteManager();
 
 	// Find all raw data / mode matches
-
 	ddword ddwSizes8bpp = IsDataPresent(8);
 	ddword ddwSizes4bpp = IsDataPresent(4);
 	if (ddwSizes8bpp == 0 && ddwSizes4bpp == 0) {

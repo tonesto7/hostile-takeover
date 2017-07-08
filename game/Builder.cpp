@@ -586,7 +586,7 @@ void MobileUnitBuildForm::SetOwner(BuilderGob *pbldr)
 
 void MobileUnitBuildForm::UpdateUnitInfo(ListItem *pli)
 {
-	MobileUnitConsts *pmuntc = (MobileUnitConsts *)gapuntc[(int)pli->pvData];
+	MobileUnitConsts *pmuntc = (MobileUnitConsts *)gapuntc[(uintptr_t)pli->pvData];
 
 	// Update Cost
 

@@ -1,0 +1,14 @@
+language: cpp
+sudo: true
+dist: trusty
+
+compiler:
+    - g++
+
+#Build steps
+before_install:
+    - sudo apt-get install libsdl1.2-dev -y
+
+script: 
+    - cd game
+    - make -f makefile.linux

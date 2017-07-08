@@ -196,7 +196,7 @@ void LoadGameForm::OnControlSelected(word idc)
 	case kidcOk:
 		{
 			ListControl *plstc = (ListControl *)GetControlPtr(kidcGameList);
-			int nGame = ((int)plstc->GetSelectedItemData()) - 1;
+			int nGame = ((uintptr_t)plstc->GetSelectedItemData()) - 1;
 			EndForm(nGame);
 		}
 		return;

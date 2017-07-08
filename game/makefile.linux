@@ -7,13 +7,13 @@
 PLATFORM=linux
 
 # Debug is not default anymore
-REL = 1
+#REL = 1
 
 ifdef REL
-CPP_DEBUG =
+CPP_DEBUG = -DDEV_BUILD -Ofast
 OUTDIR = $(PLATFORM)_rel
 else
-CPP_DEBUG = -DDEV_BUILD -DDEBUG -DDEBUG_LOGGING -g
+CPP_DEBUG = -DDEV_BUILD -DDEBUG -DDEBUG_LOGGING -g -fpermissive -Og
 OUTDIR = $(PLATFORM)_debug
 endif
 
@@ -36,9 +36,9 @@ endif
 CC = g++
 EXE = 
 CPP_INCS = -I .. -I ../inc -I sdl `sdl-config --cflags`
-CFLAGS = -std=c++0x -fsigned-char -O2 -Wno-write-strings -DSDL -DTRACKSTATE -D_THREAD_SAFE $(CPP_DEBUG) $(CPP_INCS)
+CFLAGS = -g -std=c++0x -fsigned-char -Wno-write-strings -DSDL -DTRACKSTATE -D_THREAD_SAFE $(CPP_DEBUG) $(CPP_INCS)
 #-DMULTIPLAYER -DHAVE_OPENGL 
-LIBS = `sdl-config --libs`
+LIBS = `sdl-config --libs` -pthread
 #LIBS	= -L/usr/local/lib /usr/local/lib/libSDL.a -lm -liconv -Wl,-framework,OpenGL -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,AudioUnit
 
 OBJS=game.o main.o host.o misc.o bitmap.o rip.o form.o packfile.o ini.o \

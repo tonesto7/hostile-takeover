@@ -1,3 +1,6 @@
+
+![hostile-takeover build status](https://api.travis-ci.org/ptitSeb/hostile-takeover.png "hostile-takeover build status")
+
 ## About
 
 *Hostile Takeover* is the open source release of the wildly popular mobile Real Time Strategy game *Warfare Incorporated*. Warfare Incorporated's developers, grateful for all the contributions of the open source community, are delighted to give something back.
@@ -12,10 +15,17 @@
 - latest Codeblocks (but other dev. tools should work)
 
 ### Building the Hostile Takeover Executable for OpenPandora
-- from codeblocks command line, go to your hostile-takeover folder
-- cd game
-- make -f makefile.pandora
-- run it with linux_rel/WarfareIncorporated on your device
+From codeblocks command line, go to your hostile-takeover folder
+- `cd game`
+- `make -f makefile.pandora`
+- run it with `linux_rel/WarfareIncorporated` on your device
+
+### Building the Hostile Takeover Executable for Linux
+You simply need SDL 1.2 as dependancy
+- `cd game`
+- `make -f makefile.pandora`
+- run it with `linux_rel/WarfareIncorporated` on your device
+
 
 ### Building the Hostile Takeover Data File (not updated/checked on Pandora)
 The Hostile Takeover iOS executable incorporates a data file, **htdata832.pdb**, which includes all the art, audio, and levels for the game. A prebuilt version of this data file is already in the source tree so you don't need to build it unless you are modifying assets it contains.

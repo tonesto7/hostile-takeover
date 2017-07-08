@@ -12,6 +12,6 @@ typedef long long long64;
 
 #define ELEMENTSIZE(a) (sizeof(a[0]))
 #define ARRAYSIZE(a) (sizeof(a) / sizeof(a[0]))
-#define OFFSETOF(t, m) ((int)&(((t *)0)->m))
+#define OFFSETOF(t, m) ((uintptr_t)&(((t *)0)->m))
     
 #endif // __BASICTYPES_H__
