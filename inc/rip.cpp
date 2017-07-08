@@ -383,7 +383,8 @@ void DoRip(char *psz, va_list va)
 {
     printf("Assert:\n");
     printf("File: %s, Line: %d\n", gpszRipFile, giRipLine);
-    vprintf(psz, va);
+    if (va)
+        vprintf(psz, va);
     Break();
 }
 
