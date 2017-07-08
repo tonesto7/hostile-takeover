@@ -23,8 +23,9 @@ From codeblocks command line, go to your hostile-takeover folder
 ### Building the Hostile Takeover Executable for Linux
 You simply need SDL 1.2 as dependancy
 - `cd game`
-- `make -f makefile.pandora`
+- `make -f makefile.pandora REL=1`
 - run it with `linux_rel/WarfareIncorporated` on your device
+- or omit the `REL=1` to have a Debug in `linux_debug/`
 
 
 ### Building the Hostile Takeover Data File (not updated/checked on Pandora)

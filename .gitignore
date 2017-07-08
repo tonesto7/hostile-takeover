@@ -5,3 +5,6 @@
 /game/wi.xcodeproj/project.xcworkspace/
 /game/wi.xcodeproj/xcuserdata/
 /DerivedData/
+.vscode/
+game/linux_debug
+game/linux_rel
