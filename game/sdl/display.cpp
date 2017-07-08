@@ -2,7 +2,7 @@
 #include "game/sdl/sdlspritemgr.h"
 #include "hosthelpers.h"
 
-#ifndef PANDORA
+#if !defined(PANDORA) && !defined(PYRA)
 extern int fullscreen_flag;
 #endif
 
@@ -72,6 +72,10 @@ bool Display::Init()
 	cxScreen = 800;
 	cyScreen = 480;
 	videoflags |= SDL_FULLSCREEN;
+#elif defined(PYRA)
+        cxScreen = 1280;
+        cyScreen = 720;
+        videoflags |= SDL_FULLSCREEN;
 #else
     cxScreen = 800;
     cyScreen = 600;

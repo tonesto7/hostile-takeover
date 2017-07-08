@@ -32,8 +32,8 @@ int SDL_main(int argc, char *argv[])
     wi::GameMain((char *)"");
     return 0;
 }
-#if defined(PANDORA) || defined(__linux__)
-#ifndef PANDORA
+#if defined(PANDORA) || defined(PYRA) || defined(__linux__)
+#if !defined(PANDORA) && !defined(PYRA)
 int fullscreen_flag = 0;
 void command_help()
 {
@@ -42,7 +42,7 @@ void command_help()
 #endif
 int main(int argc, char *argv[])
 {
-#ifndef PANDORA
+#if !defined(PANDORA) && !defined(PYRA)
   // check for fullscreen flag in command line
   for (int i=1; i<argc; i++) {
     if ((strcmp(argv[i],"-h")==0) || ((strcmp(argv[i],"--help")==0)))

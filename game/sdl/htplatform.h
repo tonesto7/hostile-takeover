@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#if defined(PANDORA) || defined(__linux__)
+#if defined(PANDORA) || defined(PYRA) || defined(__linux__)
 #include <limits.h>
 #else
 #include <sys/syslimits.h>
@@ -17,7 +17,7 @@
 
 // To determine if running on simulator, the sdk sets TARGET_IPHONE_SIMULATOR
 // to 0 or 1.
-#if !defined(PANDORA) && !defined(__linux__)
+#if !defined(PANDORA) && !defined(PYRA) && !defined(__linux__)
 #include <TargetConditionals.h>
 #if TARGET_IPHONE_SIMULATOR == 1
 #define SIMULATOR
