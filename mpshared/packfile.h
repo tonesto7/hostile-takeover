@@ -13,10 +13,10 @@ namespace wi {
 
 #define dmDBNameLength 32
 
-typedef uint8_t UInt8;
-typedef uint16_t UInt16;
-typedef uint32_t UInt32;
-typedef uint32_t LocalID;
+typedef unsigned char UInt8;
+typedef unsigned short UInt16;
+typedef unsigned long UInt32;
+typedef unsigned long LocalID;
 typedef char Char;
 
 #pragma pack(push, 1)
