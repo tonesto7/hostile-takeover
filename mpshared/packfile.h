@@ -15,8 +15,8 @@ namespace wi {
 
 typedef unsigned char UInt8;
 typedef unsigned short UInt16;
-typedef unsigned long UInt32;
-typedef unsigned long LocalID;
+typedef unsigned int UInt32;
+typedef unsigned int LocalID;
 typedef char Char;
 
 #pragma pack(push, 1)
