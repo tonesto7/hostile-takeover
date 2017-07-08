@@ -38,7 +38,7 @@ EXE =
 CPP_INCS = -I .. -I ../inc -I sdl `sdl-config --cflags`
 CFLAGS = -std=c++0x -mcpu=cortex-a15 -mfpu=neon-vfpv4 -mfloat-abi=hard -fsigned-char -marm -O2 -Wno-write-strings -DSDL -DTRACKSTATE -D_THREAD_SAFE $(CPP_DEBUG) $(CPP_INCS) -DPYRA
 #-DMULTIPLAYER -DHAVE_OPENGL 
-LIBS = `sdl-config --libs`
+LIBS = `sdl-config --libs` -pthread
 #LIBS	= -L/usr/local/lib /usr/local/lib/libSDL.a -lm -liconv -Wl,-framework,OpenGL -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,AudioUnit
 
 OBJS=game.o main.o host.o misc.o bitmap.o rip.o form.o packfile.o ini.o \
