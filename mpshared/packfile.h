@@ -13,12 +13,13 @@ namespace wi {
 
 #define dmDBNameLength 32
 
-typedef unsigned char UInt8;
-typedef unsigned short UInt16;
-typedef unsigned long UInt32;
-typedef unsigned long LocalID;
+typedef uint8_t UInt8;
+typedef uint16_t UInt16;
+typedef uint32_t UInt32;
+typedef uint32_t LocalID;
 typedef char Char;
 
+#pragma pack(push, 1)
 struct RecordEntryType {
 	LocalID localChunkID;		// local chunkID of a record
 	UInt8 attributes;			// record attributes;
@@ -54,6 +55,7 @@ struct DatabaseHdrType {
 	RecordListType	recordList;	// 72 first record list
                                 // 80
 };		
+#pragma pack(pop)
 #endif // !defined(PIL)
 
 // PackFileReader. Exposes c-runtime prototype apis, calls PdbReader for data
