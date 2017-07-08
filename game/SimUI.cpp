@@ -838,8 +838,7 @@ bool SimUIForm::EventProc(Event *pevt)
     case runUpdatesNowEvent:
         RunUpdatesNow();
         break;
-	}
-
+    }
 	return Form::EventProc(pevt);
 }
 
@@ -2534,7 +2533,27 @@ void MiniMapControl::OnPenEvent(Event *pevt)
             OnPenEvent2(&m_evtPenDown);
         }
     }
-
+/*
+    if (pevt->eType == keyDownEvent)  {
+        // handling of DPad here
+        int dx = 0;
+        int dy = 0;
+        if (pevt->chr == chrPageUp)
+            dy = -1;
+        if (pevt->chr == chrPageDown)
+            dy = +1;
+        if (pevt->chr == chrLeft)
+            dx = -1;
+        if (pevt->chr == chrRight)
+            dx = +1;
+        WCoord px, py;
+        gsim.GetViewPos(&px, &py);
+        px += dx;
+        py += dy;
+        gsim.SetViewPos(px, py);
+        Invalidate();
+    }
+*/
 	if (pevt->eType != penDownEvent && pevt->eType != penMoveEvent) {
 		return;
     }
