@@ -56,7 +56,7 @@ TerrainMap::~TerrainMap()
 {
 	if (m_ptrmaph != NULL)
 		gpakr.UnmapFile(&m_fmap);
-	delete m_abBuffer;
+	delete[] m_abBuffer;
 	while (m_ppathhList != NULL)
 		RemovePathHead(m_ppathhList);
 	for (PathHead *ppathh = m_ppathhFreeList; ppathh != NULL; ) {

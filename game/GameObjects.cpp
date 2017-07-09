@@ -1331,7 +1331,7 @@ bool GobMgr::Init(TCoord ctx, TCoord cty, int cpgobMax)
 	int cbT = sizeof(Gob **) * (m_cpgobMax + 1);
 	m_apgobMaster = (Gob **)gmmgr.AllocPtr(cbT);
 	if (m_apgobMaster == NULL) {
-		delete apgobMaster;
+		delete[] apgobMaster;
 		return false;
 	}
 
@@ -1350,7 +1350,7 @@ bool GobMgr::Init(TCoord ctx, TCoord cty, int cpgobMax)
 	gmmgr.WritePtr(m_apgobMaster, 0, apgobMaster, cbT);
 	m_ppgobFreeTail = m_apgobMaster + m_cpgobMax;
 	m_ppgobFreeHead = m_apgobMaster;
-	delete apgobMaster;
+	delete[] apgobMaster;
 
 	// Allocate gidMap
 
@@ -1372,11 +1372,11 @@ bool GobMgr::Init(TCoord ctx, TCoord cty, int cpgobMax)
 	cbT = m_ctx * m_cty * sizeof(Gid);
 	m_pgidMap = (Gid *)gmmgr.AllocPtr(cbT);
 	if (m_pgidMap == NULL) {
-		delete pgidMap;
+		delete[] pgidMap;
 		return false;
 	}
 	gmmgr.WritePtr(m_pgidMap, 0, pgidMap, cbT);
-	delete pgidMap;
+	delete[] pgidMap;
 
 #ifdef INCL_VALIDATEHEAP
 	gmmgr.Validate();

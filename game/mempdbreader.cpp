@@ -62,7 +62,7 @@ void MemPdbReader::Close()
 {
 	Assert(m_cMapped == 0);
 	Assert(m_pb != NULL);
-	delete m_pb;
+	delete[] m_pb;
 	m_pb = NULL;
 	delete m_aphcRecordData;
 	m_aphcRecordData = NULL;
@@ -238,7 +238,7 @@ void MemPdbReader::UnmapRecord(word nRec, dword dwCookie)
 		// Pointed to alloced object; unlock it
 
 		byte *pb = (byte *)dwCookie;
-		delete pb;
+		delete[] pb;
 	}
 }
 

@@ -625,7 +625,7 @@ bool Game::LoadGameData()
 
 	if (gcxTile > 16) {
 		if (gcbScratch <= 10 * 1024) {
-			delete gpbScratch;
+			delete[] gpbScratch;
             if (gcxTile == 32) {
                 gcbScratch = 35 * 1024;
             } else {
@@ -2081,7 +2081,7 @@ void Game::Exit()
 	DbLogExit();
 #endif
 
-	delete gpbScratch;
+	delete[] gpbScratch;
 	gpbScratch = NULL;
 
 	m_fSimUninitialized = true;

@@ -606,7 +606,7 @@ bool UpdateMap::Scroll(int dx, int dy)
 
 			// Now scrolled. Cleanup
 
-			delete pfT;
+			delete[] pfT;
 		} else {
 			// Couldn't alloc temp buffer, so invalidate everything
 
