@@ -64,7 +64,7 @@ void MemPdbReader::Close()
 	Assert(m_pb != NULL);
 	delete[] m_pb;
 	m_pb = NULL;
-	delete m_aphcRecordData;
+	delete[] m_aphcRecordData;
 	m_aphcRecordData = NULL;
 }
 
