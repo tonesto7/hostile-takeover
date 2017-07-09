@@ -80,6 +80,7 @@ const word kfPlrRemovedAtGameStart = 0x4000;
 const word kfPlrHumanJoined = 0x8000;
 
 // Size
+#pragma pack(push, 1)
 
 struct Size // siz
 {
@@ -315,6 +316,7 @@ struct UpdateResult // ur
     dword hash;
     long cmsLatency;
 };
+#pragma pack(pop)
 
 } // namespace wi
 

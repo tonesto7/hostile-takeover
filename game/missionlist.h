@@ -8,6 +8,7 @@ namespace wi {
 enum MissionType { kmtStory, kmtChallenge, kmtAddOn, kmtDemo,
         kmtMultiplayerChallenge, kmtMultiplayerAddOn, kmtUnknown };
 
+#pragma pack(push, 1)
 struct MissionDescription { // md
     char szPackName[kcbLevelTitle];
     char szLvlTitle[kcbLevelTitle];
@@ -20,6 +21,7 @@ struct MissionIdentifier { // miid
     PackId packid;
     char szLvlFilename[kcbFilename];
 };
+#pragma pack(pop)
 
 enum MissionListType { kmltAll, kmltSinglePlayer, kmltMultiplayer };
 

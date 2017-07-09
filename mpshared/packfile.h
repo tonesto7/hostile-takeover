@@ -70,13 +70,14 @@ struct DatabaseHdrType {
 #endif
 
 // DirEntry is fixed at 32
-
+#pragma pack(push, 1)
 struct DirEntry // dir
 {
 	char szFn[kcbFilename];
 	byte cRecs;
 	word nRecFirst;
 };
+#pragma pack(pop)
 
 struct ReaderInfo // rnfo
 {

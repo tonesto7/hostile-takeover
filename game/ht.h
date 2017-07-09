@@ -109,7 +109,6 @@ class CommandQueueViewer;
 #endif
 
 } // namespace wi
-    
 #include "inc/basictypes.h"
 //#include "base/log.h"
 #include "base/misc.h"
@@ -673,13 +672,13 @@ public:
 };
 
 // Palette
-
+#pragma pack(push, 1)
 struct Palette // pal
 {
     word cEntries;
     byte argb[1][3];
 };
-    
+#pragma pack(pop)
 } // namespace wi
     
 #include <htplatform.h>

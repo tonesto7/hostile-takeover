@@ -7,12 +7,14 @@
 
 namespace wi {
 
+#pragma pack(push, 1)
 struct IniSection // sec
 {
 	word offNext;
 	word cprops;
 	// char szName[];
 };
+#pragma pack(pop)
 
 struct IniProperty // prop
 {

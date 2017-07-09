@@ -5,6 +5,7 @@ typedef unsigned short word;
 
 #include <stdarg.h>
 
+#pragma pack(push, 1)
 struct IniProperty // prop
 {
 	dword nchProp;
@@ -22,6 +23,7 @@ struct IniSection // sec
 	int cprop;
 	IniProperty *pprop;
 };
+#pragma pack(pop)
 
 IniSection *LoadIniFile(char *pszFn, int *pcSections);
 int IniScanf(char *pszBuff, char *pszFmt, ...);

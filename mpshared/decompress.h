@@ -5,12 +5,15 @@
 
 namespace wi {
 
+#pragma pack(push, 1)
 struct CompressionHeader // coh
 {
 	word fCompressed;
 	word cbUncompressed;
 	word cbCompressed;
 };
+#pragma pack(pop)
+
 #define kcbCompressionHeader 6 // sizeof returns 8 on some platforms
 
 extern "C" word DecompressChunk(byte **ppbCompressed, byte *pbDecompressed,

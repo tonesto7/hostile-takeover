@@ -356,6 +356,7 @@ inline LagAcknowledgeNetMessage::LagAcknowledgeNetMessage()
 #define kfwsRemovedAtGameStart 0x0100
 #define kfwsMask 0x1ff
 
+#pragma pack(push, 1)
 struct WinStats {
     word sidm;
     word sidmAllies;
@@ -370,6 +371,7 @@ struct WinStats {
     dword cCreditsAcquired;
     dword cCreditsConsumed;
 };
+#pragma pack(pop)
 
 class WinStatsNetMessage : public NetMessage { // wnm
 public:
