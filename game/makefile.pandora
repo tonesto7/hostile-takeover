@@ -10,7 +10,7 @@ PLATFORM=linux
 REL = 1
 
 ifdef REL
-CPP_DEBUG =
+CPP_DEBUG = -g
 OUTDIR = $(PLATFORM)_rel
 else
 CPP_DEBUG = -DDEV_BUILD -DDEBUG -DDEBUG_LOGGING -g
@@ -36,7 +36,8 @@ endif
 CC = g++
 EXE = 
 CPP_INCS = -I .. -I ../inc -I sdl `sdl-config --cflags`
-CFLAGS = -std=c++0x -mcpu=cortex-a8 -mfpu=neon -mfloat-abi=softfp -fsigned-char -fdiagnostics-color=auto -O2 -Wno-write-strings -DSDL -DTRACKSTATE -D_THREAD_SAFE $(CPP_DEBUG) $(CPP_INCS) -DPANDORA
+CFLAGS = -std=c++0x -mcpu=cortex-a8 -mfpu=neon -mfloat-abi=softfp -fsigned-char -fdiagnostics-color=auto -O2 -Wno-write-strings -DSDL -DTRACKSTATE -D_THREAD_SAFE $(CPP_DEBUG) $(CPP_INCS)
+CFLAGS+= -DPANDORA -Wno-multichar -fno-delete-null-pointer-checks
 #-DMULTIPLAYER -DHAVE_OPENGL 
 LIBS = `sdl-config --libs`
 #LIBS	= -L/usr/local/lib /usr/local/lib/libSDL.a -lm -liconv -Wl,-framework,OpenGL -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,AudioUnit

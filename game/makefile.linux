@@ -34,9 +34,13 @@ endif
 
 
 CC = g++
+GCC_6 := $(shell expr `gcc -dumpversion | cut -f1 -d.` \>= 6)
 EXE = 
 CPP_INCS = -I .. -I ../inc -I sdl `sdl-config --cflags`
 CFLAGS = -g -std=c++0x -fsigned-char -Wno-write-strings -DSDL -DTRACKSTATE -D_THREAD_SAFE $(CPP_DEBUG) $(CPP_INCS) -Wno-multichar
+ifeq "$(GCC_6)" "1"
+  CFLAGS+=-fno-delete-null-pointer-checks
+endif
 #-DMULTIPLAYER -DHAVE_OPENGL 
 LIBS = `sdl-config --libs` -pthread
 #LIBS	= -L/usr/local/lib /usr/local/lib/libSDL.a -lm -liconv -Wl,-framework,OpenGL -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,AudioUnit
