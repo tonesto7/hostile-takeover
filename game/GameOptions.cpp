@@ -764,7 +764,7 @@ bool DisplayOptionsForm::Init(FormMgr *pfrmm, IniReader *pini, word idf)
 #else
 		sprintf(szT, "%dx%d, %s%s", mode.cx, mode.cy, szArt, szOrientation);
 #endif
-		plstc->Add(szT, (void *)imm);
+		plstc->Add(szT, (void *)(uintptr_t)imm);
 	}
 
 	plstc->Select(immCur);
@@ -783,7 +783,7 @@ void DisplayOptionsForm::OnControlSelected(word idc)
 		{
 			ListControl *plstc = (ListControl *)GetControlPtr(kidcModesList);
 			if (plstc->GetFlags() & kfCtlVisible) {
-				int immNew = (intptr_t)plstc->GetSelectedItemData();
+				int immNew = (uintptr_t)plstc->GetSelectedItemData();
 				ggame.RequestModeChange(immNew);
 			}
 
@@ -1106,15 +1106,15 @@ void MemoryUseForm::UpdateLabels()
 
 	char szT[128];
 
-	sprintf(szT, "start dyn, db free: %ld, %ld", gcbDynMemAtStart, gcbDbMemAtStart);
+	sprintf(szT, "start dyn, db free: %d, %d", gcbDynMemAtStart, gcbDbMemAtStart);
 	((LabelControl *)GetControlPtr(kidcDynDbInitial))->SetText(szT);
-	sprintf(szT, "mmgr dyn, db reserve: %ld, %ld", cbDyn, cbDb);
+	sprintf(szT, "mmgr dyn, db reserve: %d, %d", cbDyn, cbDb);
 	((LabelControl *)GetControlPtr(kidcMmgrDynDbReserve))->SetText(szT);
-	sprintf(szT, "dyn use: %ld / %ld", gcbDynMemAtStart - cbFree, gcbDynMemAtStart);
+	sprintf(szT, "dyn use: %d / %d", gcbDynMemAtStart - cbFree, gcbDynMemAtStart);
 	((LabelControl *)GetControlPtr(kidcDynUse))->SetText(szT);
-	sprintf(szT, "mmgr use: %ld / %ld", cbTotal - gmmgr.GetFreeSize(), cbTotal);
+	sprintf(szT, "mmgr use: %d / %d", cbTotal - gmmgr.GetFreeSize(), cbTotal);
 	((LabelControl *)GetControlPtr(kidcMmgrUse))->SetText(szT);
-	sprintf(szT, "cache use: %ld", gcam.GetTotalSize());
+	sprintf(szT, "cache use: %d", gcam.GetTotalSize());
 	((LabelControl *)GetControlPtr(kidcCacheUse))->SetText(szT);
 
 	bool fCacheLimit = (gcam.GetLimit() != 0);
@@ -1122,7 +1122,7 @@ void MemoryUseForm::UpdateLabels()
 	GetControlPtr(kidcSub10KCache)->Show(fCacheLimit);
 	GetControlPtr(kidcCacheLimit)->Show(fCacheLimit);
 
-	sprintf(szT, "Cache Limit: %ld", gcam.GetLimit());
+	sprintf(szT, "Cache Limit: %d", gcam.GetLimit());
 	((LabelControl *)GetControlPtr(kidcCacheLimit))->SetText(szT);
 }
 

@@ -1,4 +1,4 @@
-typedef unsigned long dword;
+typedef unsigned int dword;
 typedef unsigned char byte;
 typedef unsigned short word;
 #define NULL 0

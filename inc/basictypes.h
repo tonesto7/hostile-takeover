@@ -3,10 +3,11 @@
 
 typedef unsigned char byte;
 typedef unsigned short word;
-typedef unsigned long dword;
+typedef unsigned int dword;
 typedef unsigned long long ddword;
 typedef unsigned long long dword64;
 typedef long long long64;
+typedef unsigned long pword;
 #undef NULL
 #define NULL 0
 

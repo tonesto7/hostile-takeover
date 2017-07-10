@@ -28,7 +28,7 @@ void CacheMgr::Exit()
 
 	// Free CacheEntry list
 
-	delete m_pceList;
+	delete[] m_pceList;
 	m_pceList = NULL;
 	m_pceFree = NULL;
 }
@@ -127,7 +127,7 @@ CacheHandle CacheMgr::NewObject(void *pv, word cb, word wfHints)
 	if (m_cbLimit != 0) {
 		while (m_cbTotalSize + cb > m_cbLimit) {
 			if (!MakeSpace(m_cbTotalSize + cb - m_cbLimit))
-				return NULL;
+				return 0;
 		}
 	}
 
@@ -149,14 +149,14 @@ CacheHandle CacheMgr::NewObject(void *pv, word cb, word wfHints)
 	CacheEntry *pce = m_pceFree->pcePrev;
 	Assert(pce != NULL);
 	if (pce == NULL)
-		return NULL;
+		return 0;
 
 	// Alloc the object
 
 	pce->hmem = gmmgr.AllocHandle(cb, wfHints);
 	Assert(pce->hmem != NULL);
 	if (pce->hmem == NULL)
-		return NULL;
+		return 0;
 	pce->cbSize = cb;
 
 	// Write in data

@@ -17,6 +17,7 @@ void RecordOpen(char *pszApi, char *pszFile, dword dw)
 	FILE *pfil = fopen("openlog.txt", "a+");
 	fseek(pfil, 0, SEEK_END);
 	fprintf(pfil, "0x%08lx: %s %s\n", dw, pszApi, pszFile);
+printf("0x%08lx: %s %s\n", dw, pszApi, pszFile);
 	fclose(pfil);
 }
 
@@ -318,7 +319,7 @@ void *PackFileReader::MapFile(const char *pszFn, FileMap *pfmap, dword *pcb)
             return NULL;
         }
         pfmap->prnfo = prnfo;
-        pfmap->dwCookie = 0;
+        pfmap->pvCookie = 0;
         pfmap->nRec = 0;
         pfmap->pbAlloced = pb;
         if (pcb != NULL) {
@@ -329,8 +330,8 @@ void *PackFileReader::MapFile(const char *pszFn, FileMap *pfmap, dword *pcb)
         // See if pdbReader will map this entry
         
         word cbRec;
-        dword dwCookie;
-        pb = prnfo->ppdbReader->MapRecord(nRecFirst, &dwCookie, &cbRec);
+        void *pvCookie;
+        pb = prnfo->ppdbReader->MapRecord(nRecFirst, &pvCookie, &cbRec);
         if (pb == NULL)
             return NULL;
 
@@ -338,7 +339,7 @@ void *PackFileReader::MapFile(const char *pszFn, FileMap *pfmap, dword *pcb)
 
         pfmap->prnfo = prnfo;
         pfmap->nRec = nRecFirst;
-        pfmap->dwCookie = dwCookie;
+        pfmap->pvCookie = pvCookie;
         pfmap->pbAlloced = NULL;
         if (pcb != NULL)
             *pcb = (dword)cbRec;
@@ -363,7 +364,7 @@ void PackFileReader::UnmapFile(FileMap *pfmap)
     if (pfmap->pbAlloced != NULL) {
         delete[] pfmap->pbAlloced;
     } else {
-        pfmap->prnfo->ppdbReader->UnmapRecord(pfmap->nRec, pfmap->dwCookie);
+        pfmap->prnfo->ppdbReader->UnmapRecord(pfmap->nRec, pfmap->pvCookie);
     }
 }
 
@@ -472,8 +473,8 @@ bool PackFileReader::Push(const char *pszDir, const char *pszFn,
 	// First try to map the directory record
 
 	word cb;
-	dword dwCookie;
-	DirEntry *pdir = (DirEntry *)ppdbReader->MapRecord(0, &dwCookie, &cb);
+	void *pvCookie;
+	DirEntry *pdir = (DirEntry *)ppdbReader->MapRecord(0, &pvCookie, &cb);
 
 	if (pdir == NULL)
 		return false;
@@ -483,7 +484,7 @@ bool PackFileReader::Push(const char *pszDir, const char *pszFn,
 	ReaderInfo *prnfo = &m_arnfo[m_crnfo];
 	m_crnfo++;
 	prnfo->ppdbReader = ppdbReader;
-	prnfo->dwCookie = dwCookie;
+	prnfo->pvCookie = pvCookie;
 	prnfo->pdir = pdir;
 	prnfo->cEntries = cb / sizeof(DirEntry);
 	prnfo->cOpen = 0;
@@ -532,7 +533,7 @@ void PackFileReader::RemoveReader(int rnfo)
 
 	delete[] prnfo->pszDir;
 	delete[] prnfo->pszFn;
-	prnfo->ppdbReader->UnmapRecord(0, prnfo->dwCookie);
+	prnfo->ppdbReader->UnmapRecord(0, prnfo->pvCookie);
 	prnfo->ppdbReader->Close();
 	delete prnfo->ppdbReader;
 

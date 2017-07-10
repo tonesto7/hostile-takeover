@@ -234,7 +234,7 @@ MissionType CreateGameForm::InitLists(int iMissionSelect) {
                                           md.szLvlTitle, md.cPlayersMin, md.cPlayersMax);
         }
         ListControl *plstc = m_aplstc[IndexFromMissionType(md.mt)];
-        plstc->Add(pszT, (void *)i);
+        plstc->Add(pszT, (void *)(uintptr_t)i);
         
         // Track the first incomplete, for later selection
         

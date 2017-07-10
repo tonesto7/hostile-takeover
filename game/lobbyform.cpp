@@ -123,7 +123,7 @@ void LobbyForm::OnControlNotify(word idc, int nNotify) {
 
 void LobbyForm::OnJoinRoom() {
     ListControl *plstc = (ListControl *)GetControlPtr(kidcRoomList);
-    dword roomid = (dword)plstc->GetSelectedItemData();
+    dword roomid = (dword)(pword)plstc->GetSelectedItemData();
     RoomMap::iterator it = map_.find(roomid);
     if (it == map_.end()) {
         return;
@@ -245,7 +245,7 @@ void LobbyForm::Refresh(int ct) {
 void LobbyForm::OnTimeout(int id) {
     refresh_ = false;
     ListControl *plstc = (ListControl *)GetControlPtr(kidcRoomList);
-    dword roomid = (dword)plstc->GetSelectedItemData();
+    dword roomid = (dword)(pword)plstc->GetSelectedItemData();
     if (!selected_main_) {
         roomid = kroomidMain;
     }
@@ -267,7 +267,7 @@ void LobbyForm::OnTimeout(int id) {
                     info.cGames,
                     info.cGames == 1 ? "game" : "games");
         }
-        plstc->Add(s, (void *)info.roomid);
+        plstc->Add(s, (void *)(uintptr_t)info.roomid);
     }
     int selected = FindIndex(roomid);
     if (selected < 0 && map_.size() != 0) {
@@ -357,7 +357,7 @@ bool LobbyForm::OnFilterEvent(Event *pevt) {
         HostGetAskString(s, sizeof(s));
 
         ListControl *plstc = (ListControl *)GetControlPtr(kidcRoomList);
-        dword roomid = (dword)plstc->GetSelectedItemData();
+        dword roomid = (dword)(pword)plstc->GetSelectedItemData();
         RoomMap::iterator it = map_.find(roomid);
         if (it != map_.end()) {
             it->second.password = s;

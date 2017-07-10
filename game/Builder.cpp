@@ -539,7 +539,7 @@ void MobileUnitBuildForm::SetOwner(BuilderGob *pbldr)
 
 			int nStripIcon = puntc->panid->GetStripIndex("icon");
 			if (nStripIcon != -1) {				
-				plstc->Add(puntc->panid, nStripIcon, 0, (void *)(int)puntc->ut, fDisabled);
+				plstc->Add(puntc->panid, nStripIcon, 0, (void *)(uintptr_t)puntc->ut, fDisabled);
 				j++;
 				if (j == m_pbldr->GetLastSelection()) {
 					// If disabled, orders are not valid

@@ -186,11 +186,11 @@ MissionType SelectMissionForm::InitLists(int iMissionSelect) {
 
         MissionIdentifier miid;
         m_pml->GetMissionIdentifier(i, &miid);
-        dword dw = (dword)i;
+        pword pw = (pword)i;
         const char *pszStatus = "";
         if (fLocked) {
             pszStatus = "LOCKED";
-            dw |= kfItemLocked;
+            pw |= kfItemLocked;
         } else {
             if (gpcptm->IsComplete(&miid)) {
                 pszStatus = "Complete";
@@ -200,7 +200,7 @@ MissionType SelectMissionForm::InitLists(int iMissionSelect) {
         // Add the item
 
         plstc->Add(base::Format::ToString("%s\t%s", md.szLvlTitle,
-                pszStatus), (void *)dw);
+                pszStatus), (void *)pw);
 
         // Track the first incomplete for each mission type.
 
@@ -363,13 +363,13 @@ void SelectMissionForm::OnControlNotify(word idc, int nNotify) {
 }
 
 int SelectMissionForm::GetSelectedMissionIndex(ListControl *plstc) {
-    dword dw = (dword)plstc->GetSelectedItemData();
-    return (int)(dw & ~kfItemLocked);
+    pword pw = (pword)plstc->GetSelectedItemData();
+    return (int)(pw & ~kfItemLocked);
 }
 
 bool SelectMissionForm::IsSelectedMissionLocked(ListControl *plstc) {
-    dword dw = (dword)plstc->GetSelectedItemData();
-    return (dw & kfItemLocked) != 0;
+    pword pw = (pword)plstc->GetSelectedItemData();
+    return (pw & kfItemLocked) != 0;
 }
 
 void SelectMissionForm::UpdateDescription() {

@@ -1734,7 +1734,7 @@ void MobileUnitGob::FreeCachedPaths()
 {
 	for (int nPath = 0; nPath < s_cpathCached; nPath++)
 		delete s_apathCached[nPath];
-	s_cpathCached = NULL;
+	s_cpathCached = 0;
 }
 
 bool MobileUnitGob::PrepPath(WCoord wxDst, WCoord wyDst)

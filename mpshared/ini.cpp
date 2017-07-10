@@ -3,6 +3,7 @@
 #include "inc/rip.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 namespace wi {
 
@@ -282,7 +283,34 @@ bool IniReader::Init(const char *psz)
 	m_psecFirst = (IniSection *)m_pak.MapFile(psz, &m_fmap);
 	return m_psecFirst != NULL;
 }
+/*
+void IniReader::Dump()
+{
+	printf("Dump of IniReader, psecFirst=%p\n----------------\n",m_psecFirst);
+	IniSection *psec = m_psecFirst;
+	while(psec)
+	{
+		printf(" ==> offNext=%d, cprops=%d, %s\n", BigWord(psec->offNext), BigWord(psec->cprops), (char *)(psec + 1));
 
+		char *pszPropT = (char *)(psec + 1) + strlen((char *)(psec + 1)) + 1;
+		int l = strlen((char *)(psec + 1)) + 1 + sizeof(IniSection);
+		for (int iprop = 0; iprop < BigWord(psec->cprops); iprop++) {
+			printf("  -> %04X \"%s\" = %s\n", (char*)pszPropT - (char*)m_psecFirst, pszPropT, pszPropT + strlen(pszPropT) + 1);
+			l += strlen(pszPropT) + 1;
+			pszPropT += strlen(pszPropT) + 1;
+			l += strlen(pszPropT) + 1;
+			pszPropT += strlen(pszPropT) + 1;
+		}
+		printf("  => total = %d (%d)\n", l, BigWord(psec->offNext));
+		
+		if (psec->offNext == 0)
+			psec = NULL;
+		else
+			psec = (IniSection *)((byte *)psec + BigWord(psec->offNext));
+	}
+	printf("==================\n");
+}
+*/
 bool IniReader::GetPropertyValue(char *pszSec, char *pszProp, char *pszValue, int cbValue)
 {
 	IniSection *psec = FindSection(pszSec);

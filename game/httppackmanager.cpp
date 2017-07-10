@@ -252,7 +252,7 @@ bool HttpPackManager::FinishInstall() {
     char szType[5];
     szType[4] = 0;
     fseek(tempfile_, 0x3c, SEEK_SET);
-    fread(szType, 4, 1, tempfile_);
+    int dummy = fread(szType, 4, 1, tempfile_);
     if (strcmp(szType, kszTypeAddon) != 0) {
         fclose(tempfile_);
         tempfile_ = NULL;

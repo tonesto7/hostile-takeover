@@ -85,7 +85,7 @@ struct ReaderInfo // rnfo
 	DirEntry *pdir;
 	char *pszDir;
 	char *pszFn;
-	dword dwCookie;
+	void* pvCookie;
 	int cEntries;
 	int cOpen;
 };
@@ -109,7 +109,7 @@ struct File
 struct FileMap // fmap
 {
 	ReaderInfo *prnfo;
-	dword dwCookie;
+	void* pvCookie;
 	dword nRec;
     byte *pbAlloced;
 };

@@ -65,7 +65,7 @@ SdlSoundDevice::SdlSoundDevice()
 
 SdlSoundDevice::~SdlSoundDevice()
 {
-	SDL_CloseAudio();
+	//SDL_CloseAudio();
 	
 	// TODO(darrinm): and free buffers?
 }

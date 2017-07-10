@@ -820,7 +820,7 @@ void Game::AddModeMatches(int nDepthData, int nSizeData, int nDepthOrGreater, in
 				continue;
 			if (m_amm != NULL) {
 				memcpy(pmm, m_amm, sizeof(ModeMatch) * m_cmm);
-				delete m_amm;
+				delete[] m_amm;
 			}
 			m_amm = pmm;
 			m_cmmAlloc += kcmmGrow;
@@ -2065,7 +2065,7 @@ void Game::Exit()
 	delete gpdisp;
 	gpdisp = NULL;
 
-	delete m_amm;
+	delete[] m_amm;
 	m_amm = NULL;
 	m_cmm = 0;
 	m_cmmAlloc = 0;

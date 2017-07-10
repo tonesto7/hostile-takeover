@@ -51,6 +51,7 @@ public:
 	bool FindNextProperty(FindProp *pfind, char *pszSec, char *pszProp, int cbProp);
 	int GetPropertyValue(FindProp *pfind, char *pszFmt, ...);
 
+//	void Dump();
 private:
 	IniSection *FindSection(char *pszSec);
 	bool FindProperty(IniSection *psec, char *pszProp, IniProperty *pprop);
