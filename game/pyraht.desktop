@@ -1,0 +1,21 @@
+[Desktop Entry]
+Version=1.6.0.01
+Type=Application
+Categories=Game;StrategyGame
+Name=Hostile Takeover
+Comment=Hostile Takeover, an Open Source RTS (formely known as Warfare Inc.)
+Exec=ht
+Icon=ht.png
+Terminal=false
+StartupNotify=false
+
+[Package Entry]
+Id=ptitSeb_ht
+Arch=armhf
+Exec=ht
+Name=Hostile Takeover
+Version=1.6.0.01
+Icon=ht.png
+Dependency[deb]=libsdl1.2debian;
+
+

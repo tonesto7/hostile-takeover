@@ -1,8 +1,4 @@
-# TODO(darrinm):
-# - make output dir
-# - produce OUTDIR from platform (mac, win, linux, nacl), release type (debug, rel)
-# - build on Windows
-# - static/dynamic link switch
+# squashfs-tools is needed to have mksquashfs
 
 PLATFORM=linux
 
@@ -21,17 +17,9 @@ MKDIR_P = mkdir -p
 
 EXE_NAME = $(OUTDIR)/WarfareIncorporated$(EXE)
 
-ifeq ($(PLATFORM), 'mac')
-APP_NAME=WarfareIncorporated
-
-BUNDLE_CONTENTS = $(OUTDIR)/$(APP_NAME).app/Contents
-$(APP_NAME)_bundle: $(EXE_NAME)
-	mkdir -p $(BUNDLE_CONTENTS)/MacOS
-	mkdir -p $(BUNDLE_CONTENTS)/Resources
-	echo "APPL????" > $(BUNDLE_CONTENTS)/PkgInfo
-#	$(INSTALL_PROGRAM) $< $(BUNDLE_CONTENTS)/MacOS/
-endif
-
+DBP_NAME = $(OUTDIR)/HostileTakeover.dbp
+DBPDIR = $(OUTDIR)_dbp
+ZIPDIR = $(OUTDIR)_zip
 
 CC = g++
 EXE = 
@@ -75,15 +63,53 @@ OBJS=game.o main.o host.o misc.o bitmap.o rip.o form.o packfile.o ini.o \
 # TODO(darrinm): sdl/transportmgr.cpp [from iphone? from win?]
 
 
-all: folder $(EXE_NAME)
+all: folder $(EXE_NAME) $(DBP_NAME)
 
-folder: ${OUTDIR}
+folder: ${OUTDIR} ${DBPDIR} ${ZIPDIR}
 
 ${OUTDIR}:
 	${MKDIR_P} ${OUTDIR}
 
+${DBPDIR}:
+	${MKDIR_P} ${DBPDIR}
+
+${ZIPDIR}: ${ZIPDIR}/meta ${ZIPDIR}/icons
+	${MKDIR_P} ${ZIPDIR}
+
+${ZIPDIR}/meta:
+	${MKDIR_P} ${ZIPDIR}/meta
+
+${ZIPDIR}/icons:
+	${MKDIR_P} ${ZIPDIR}/icons
+
 clean:
 	rm -f $(OUTDIR)/*
+
+$(DBP_NAME): $(OUTDIR)/ht.iso $(OUTDIR)/htmeta.zip
+	cat $(OUTDIR)/ht.iso $(OUTDIR)/htmeta.zip > $(DBP_NAME)
+
+$(OUTDIR)/ht.iso: $(DBPDIR)/ht $(DBPDIR)/htdata832.pdb $(DBPDIR)/htsfx.pdb
+	#create iso
+	mksquashfs $(DBPDIR) $(OUTDIR)/ht.iso -all-root -force-gid 0
+
+$(DBPDIR)/ht: $(OUTDIR)/ht
+	cp $(OUTDIR)/ht $(DBPDIR)/ht
+
+$(DBPDIR)/htdata832.pdb: htdata832.pdb
+	cp htdata832.pdb $(DBPDIR)/htdata832.pdb
+
+$(DBPDIR)/htsfx.pdb: htsfx.pdb
+	cp htsfx.pdb $(DBPDIR)/htsfx.pdb
+
+$(OUTDIR)/htmeta.zip: $(ZIPDIR)/meta/default.desktop $(ZIPDIR)/icons/ht.png
+	cd $(ZIPDIR) && zip ../$(OUTDIR)/htmeta.zip * -r
+	cd ..
+
+$(ZIPDIR)/meta/default.desktop: pyraht.desktop
+	cp pyraht.desktop $(ZIPDIR)/meta/default.desktop
+
+$(ZIPDIR)/icons/ht.png: ht.png
+	cp ht.png $(ZIPDIR)/icons/ht.png
 
 $(EXE_NAME): $(OUTDIR)/ht
 	cp $(OUTDIR)/ht $(EXE_NAME)
