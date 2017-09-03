@@ -18,7 +18,18 @@
 From codeblocks command line, go to your hostile-takeover folder
 - `cd game`
 - `make -f makefile.pandora`
-- run it with `linux_rel/WarfareIncorporated` on your device
+- run it with `linux_rel/ht` on your device
+
+### Prerequisites for Dragonbox Pyra
+- Pyra
+- you'll need some dev tools and squashfs to build dbp (`sudo apt install build-essential libsld1.2-dev squashfs-tools` should do the trick)
+
+### Building the Hostile Takeover Executable for Pyra
+From command line, go to your hostile-takeover folder
+- `cd game`
+- `make -f makefile.pyra`
+- run it with `linux_rel/ht` on your device
+- also, you'll have `linux_rel/HostileTakeover.dbp` generated, put it in your `dragonbox/packages` folder
 
 ### Building the Hostile Takeover Executable for Linux
 You simply need SDL 1.2 as dependancy
