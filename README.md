@@ -5,6 +5,8 @@
 
 *Hostile Takeover* is the open source release of the wildly popular mobile Real Time Strategy game *Warfare Incorporated*. Warfare Incorporated's developers, grateful for all the contributions of the open source community, are delighted to give something back.
 
+![sreenshot on Pandora](screenshot.png "screenshot on Pandora")
+
 #### Legal Stuff
 *Hostile Takeover* and *Warfare Incorporated* are registered trademarks of *Spiffcode, Inc* the developers of Warfare Incorporated. *Hostile Takeover* is copyrighted 2004-2014 by Spiffcode, Inc. The Hostile Takeover source code is made available under the [BSD open source license](LICENSE.txt).
 
