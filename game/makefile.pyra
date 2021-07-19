@@ -88,12 +88,15 @@ clean:
 $(DBP_NAME): $(OUTDIR)/ht.iso $(OUTDIR)/htmeta.zip
 	cat $(OUTDIR)/ht.iso $(OUTDIR)/htmeta.zip > $(DBP_NAME)
 
-$(OUTDIR)/ht.iso: $(DBPDIR)/ht $(DBPDIR)/htdata832.pdb $(DBPDIR)/htsfx.pdb
+$(OUTDIR)/ht.iso: $(DBPDIR)/ht $(DBPDIR)/htdata832.pdb $(DBPDIR)/htsfx.pdb $(DBPDIR)/hostiletakeover.sh
 	#create iso
 	mksquashfs $(DBPDIR) $(OUTDIR)/ht.iso -all-root -force-gid 0
 
 $(DBPDIR)/ht: $(OUTDIR)/ht
 	cp $(OUTDIR)/ht $(DBPDIR)/ht
+
+$(DBPDIR)/hostiletakeover.sh: hostiletakeover.sh
+	cp hostiletakeover.sh $(DBPDIR)/hostiletakeover.sh
 
 $(DBPDIR)/htdata832.pdb: htdata832.pdb
 	cp htdata832.pdb $(DBPDIR)/htdata832.pdb
@@ -102,7 +105,7 @@ $(DBPDIR)/htsfx.pdb: htsfx.pdb
 	cp htsfx.pdb $(DBPDIR)/htsfx.pdb
 
 $(OUTDIR)/htmeta.zip: $(ZIPDIR)/meta/default.desktop $(ZIPDIR)/icons/ht.png
-	cd $(ZIPDIR) && zip ../$(OUTDIR)/htmeta.zip * -r
+	cd $(ZIPDIR) && zip -0 ../$(OUTDIR)/htmeta.zip * -r
 	cd ..
 
 $(ZIPDIR)/meta/default.desktop: pyraht.desktop

@@ -1,10 +1,10 @@
 [Desktop Entry]
-Version=1.6.0.01
+Version=1.6.0.03
 Type=Application
 Categories=Game;StrategyGame
 Name=Hostile Takeover
 Comment=Hostile Takeover, an Open Source RTS (formely known as Warfare Inc.)
-Exec=ht
+Exec=hostiletakeover.sh
 Icon=ht.png
 Terminal=false
 StartupNotify=false
@@ -12,10 +12,10 @@ StartupNotify=false
 [Package Entry]
 Id=ptitSeb_ht
 Arch=armhf
-Exec=ht
+Exec=hostiletakeover.sh
 Name=Hostile Takeover
-Version=1.6.0.01
+Version=1.6.0.03
 Icon=ht.png
-Dependency[deb]=libsdl1.2debian;
+Dependency[deb]=libsdl1.2pyra;
 
 
